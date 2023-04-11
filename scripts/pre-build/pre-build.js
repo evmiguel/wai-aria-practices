@@ -12,9 +12,12 @@ const transformPracticeIndex = require("./library/transformPracticeIndex");
 const transformImageAsset = require("./library/transformImageAsset");
 const transformHtmlAsset = require("./library/transformHtmlAsset");
 const transformOtherAsset = require("./library/transformOtherAsset");
+const readDirectoryFiles = require("./library/readDirectoryFiles");
 
 const preBuild = async () => {
   await emptyBuildFolders();
+  const patternsPaths = await readDirectoryFiles("../../../_external/aria-practices/content/patterns/*/*-pattern.html");
+  const practicesPaths = await readDirectoryFiles("../../../_external/aria-practices/content/practices/*/*-practice.html");
 
   await recursivelyCopyAllContent({
     forEachFile: (sourcePath, sourceContents) => {
@@ -32,9 +35,9 @@ const preBuild = async () => {
         case "exampleIndex":
           return transformExampleIndex(sourcePath, sourceContents);
         case "patternIndex":
-          return transformPatternIndex(sourcePath, sourceContents);
+          return transformPatternIndex(sourcePath, patternsPaths, sourceContents);
         case "practiceIndex":
-          return transformPracticeIndex(sourcePath, sourceContents);
+          return transformPracticeIndex(sourcePath, practicesPaths, sourceContents);
         case "about":
           return transformAbout(sourcePath, sourceContents);
         case "imageAsset":

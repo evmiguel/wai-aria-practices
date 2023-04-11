@@ -2,16 +2,13 @@ const fs = require("fs/promises");
 const { parse: parseHtml } = require("node-html-parser");
 const formatForJekyll = require("./formatForJekyll");
 const { rewriteSourcePath } = require("./rewritePath");
-const readDirectoryFiles = require("./readDirectoryFiles");
 
-const transformPracticeIndex = async (sourcePath /* , sourceContents */) => {
+const transformPracticeIndex = async (sourcePath, paths /* , sourceContents */) => {
   const { sitePath, githubPath } = rewriteSourcePath(sourcePath);
 
   const practices = [];
 
-  const practicePaths = await readDirectoryFiles("../../../_external/aria-practices/content/practices/*/*-practice.html");
-
-  for (const practicePath of practicePaths) {
+  for (const practicePath of paths) {
     const { sitePath } = rewriteSourcePath(practicePath);
     const practiceContents = await fs.readFile(practicePath, {
       encoding: "utf8",

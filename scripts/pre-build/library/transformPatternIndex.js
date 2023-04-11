@@ -2,16 +2,13 @@ const fs = require("fs/promises");
 const { parse: parseHtml } = require("node-html-parser");
 const formatForJekyll = require("./formatForJekyll");
 const { rewriteSourcePath } = require("./rewritePath");
-const readDirectoryFiles = require("./readDirectoryFiles");
 
-const transformPatternIndex = async (sourcePath /* , sourceContents */) => {
+const transformPatternIndex = async (sourcePath, paths /* , sourceContents */) => {
   const { sitePath, githubPath } = rewriteSourcePath(sourcePath);
 
   const patterns = [];
 
-  const patternPaths = await readDirectoryFiles("../../../_external/aria-practices/content/patterns/*/*-pattern.html");
-
-  for (const patternPath of patternPaths) {
+  for (const patternPath of paths) {
     const { sitePath } = rewriteSourcePath(patternPath);
 
     const patternContents = await fs.readFile(patternPath, {
