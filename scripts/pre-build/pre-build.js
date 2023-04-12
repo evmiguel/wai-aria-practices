@@ -25,11 +25,11 @@ const preBuild = async () => {
 
       switch (contentType) {
         case "pattern":
-          return transformPattern(sourcePath, sourceContents);
+          return transformPattern(sourcePath, sourceContents, patternsPaths);
         case "example":
           return transformExample(sourcePath, sourceContents);
         case "practice":
-          return transformPractice(sourcePath, sourceContents);
+          return transformPractice(sourcePath, sourceContents, practicesPaths);
         case "homepage":
           return transformHomepage(sourcePath, sourceContents);
         case "exampleIndex":

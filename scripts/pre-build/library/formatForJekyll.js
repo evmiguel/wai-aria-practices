@@ -6,9 +6,11 @@ const formatForJekyll = ({
   addBodyClass,
   content,
   enableSidebar = false,
+  enableSidenav = false,
   githubPath,
   head = "",
   footer = null,
+  paths = []
 }) => {
   const permalink = `/ARIA/apg/${sitePath}`;
 
@@ -29,6 +31,7 @@ feedbackmail: public-aria-practices@w3.org
 permalink: ${permalink}
 
 sidebar: ${enableSidebar}
+sidenav: ${enableSidenav}
 
 ${!footer ? "" : `footer: "${footer.replace(/\n/g, "").replace(/"/g, "'")}"`}
 
@@ -76,8 +79,14 @@ ${
 <div>
 ${content}
 </div>
+<script id="rawData">
+    const rawData = JSON.parse(${JSON.stringify({paths})})
+</script>
 <script 
   src="{{ '/content-assets/wai-aria-practices/shared/js/skipto.js' | relative_url }}"
+></script>
+<script 
+  src="{{ '/content-assets/wai-aria-practices/shared/js/sidenav.js' | relative_url }}"
 ></script>
 ${/* `, { parser: "html" })} */ ""}`;
 };

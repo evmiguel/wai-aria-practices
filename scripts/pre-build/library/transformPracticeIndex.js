@@ -89,6 +89,7 @@ const transformPracticeIndex = async (sourcePath, paths /* , sourceContents */) 
     githubPath,
     content,
     enableSidebar: false,
+    enableSidenav: false
   });
 };
 

@@ -6,7 +6,7 @@ const rewriteElementPaths = require("./rewriteElementPaths");
 const removeDuplicateMainTag = require("./removeDuplicateMainTag");
 const removeConflictingCss = require("./removeConflictingCss");
 
-const transformPattern = async (sourcePath, sourceContents) => {
+const transformPattern = async (sourcePath, sourceContents, paths) => {
   const { sitePath, githubPath } = rewriteSourcePath(sourcePath);
   const html = parseHtml(sourceContents);
 
@@ -49,6 +49,7 @@ const transformPattern = async (sourcePath, sourceContents) => {
     enableSidebar: true,
     head: html.querySelector("head").innerHTML,
     footer: "",
+    paths
   });
 };
 
