@@ -17,9 +17,9 @@ const recursivelyCopyAllContent = async ({ forEachFile }) => {
       sourceContents = await fs.readFile(sourcePath, { encoding: "utf8" });
     }
 
-    const { buildPath } = rewriteSourcePath(sourcePath);
+    const { buildPath, sitePath } = rewriteSourcePath(sourcePath);
 
-    const sourcePathAndContent = { sourcePath, sourceContents, buildPath }
+    const sourcePathAndContent = { sourcePath, sourceContents, buildPath, sitePath }
     allSourcePathsAndContents.push(sourcePathAndContent)
   }
 

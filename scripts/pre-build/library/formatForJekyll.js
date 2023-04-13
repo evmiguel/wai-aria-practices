@@ -10,7 +10,8 @@ const formatForJekyll = ({
   githubPath,
   head = "",
   footer = null,
-  paths = []
+  paths = [],
+  navTitle = ''
 }) => {
   const permalink = `/ARIA/apg/${sitePath}`;
 
@@ -81,6 +82,7 @@ ${content}
 </div>
 <script id="rawData">
     const rawData = ${JSON.stringify({paths})};
+    const sideNavTitle = "${navTitle}";
 </script>
 <script 
   src="{{ '/content-assets/wai-aria-practices/shared/js/skipto.js' | relative_url }}"

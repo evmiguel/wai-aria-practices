@@ -52,8 +52,9 @@ const transformPattern = async (sourcePath, sourceContents, allSourcePathsAndCon
     paths: allSourcePathsAndContents.filter(entry => entry.sourcePath.includes('pattern.html')).map(entry => {
       const html = parseHtml(entry.sourceContents);
       const title = html.querySelector("h1").innerHTML;
-      return title
-  }).sort()
+      return { title, sitePath: entry.sitePath}
+  }).sort((a, b) => a.title.localeCompare(b.title)),
+    navTitle: 'Pattern'
 })
 };
 

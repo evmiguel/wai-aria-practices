@@ -29,8 +29,9 @@ const transformPractice = async (sourcePath, sourceContents, allSourcePathsAndCo
     paths: allSourcePathsAndContents.filter(entry => entry.sourcePath.includes('practice.html')).map(entry => {
       const html = parseHtml(entry.sourceContents);
       const title = html.querySelector("h1").innerHTML;
-      return title
-  }).sort()
+      return { title, sitePath: entry.sitePath}
+  }).sort((a, b) => a.title.localeCompare(b.title)),
+    navTitle: 'Practice'
   });
 };
 
