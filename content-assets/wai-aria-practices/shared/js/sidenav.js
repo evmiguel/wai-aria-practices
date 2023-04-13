@@ -6,7 +6,12 @@
 (function () {
     const sidenavPaths = rawData['paths'];
     const main = document.getElementById('main');
-    const sideNav = document.createElement('div');
+    const sideNav = document.createElement('nav');
+    sideNav.setAttribute('id','sidenav');
+    sideNav.classList.add("patternsPracticesNav");
+    const heading = document.createElement('h2');
+    heading.textContent = "Patterns";
+    sideNav.appendChild(heading);
     const list = document.createElement('ul');
     for (path of sidenavPaths) {
         const item = document.createElement('li');

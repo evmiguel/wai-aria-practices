@@ -796,6 +796,21 @@ body.page-about main {
   width: 50%;
 }
 
+.patternsPracticesNav {
+  text-align:left;
+}
+
+.patternsPracticesNav ul {
+  padding-left: 0;
+  display:inline-block;
+  text-align: left;
+  width: 1000em;
+}
+
+.patternsPracticesNav ul li {
+  list-style: none;
+}
+
 @media screen and (min-width: 23em) {
   .read-this-first img {
     width: 178px;
@@ -830,5 +845,15 @@ body.page-about main {
   }
   .read-this-first .text {
     margin-right: 2em;
+  }
+
+  #main {
+    margin-left: 15em;
+  }
+
+  .patternsPracticesNav {
+    position: relative;
+    float: left;
+    width: 15em;
   }
 }
