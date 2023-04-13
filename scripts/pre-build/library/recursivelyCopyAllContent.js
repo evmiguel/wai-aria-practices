@@ -5,6 +5,7 @@ const { rewriteSourcePath, sourceRoot } = require("./rewritePath");
 
 const recursivelyCopyAllContent = async ({ forEachFile }) => {
   const sourcePaths = await getPaths(path.join(sourceRoot, "content"));
+  const allSourcePathsAndContents = [];
 
   for (const sourcePath of sourcePaths) {
     let sourceContents;
@@ -17,12 +18,19 @@ const recursivelyCopyAllContent = async ({ forEachFile }) => {
     }
 
     const { buildPath } = rewriteSourcePath(sourcePath);
-    if (buildPath === null) continue; // File is ignored
-    const buildContents = await forEachFile(sourcePath, sourceContents);
 
-    await fs.mkdir(path.dirname(buildPath), { recursive: true });
-    await fs.writeFile(buildPath, buildContents, { encoding: "utf8" });
+    const sourcePathAndContent = { sourcePath, sourceContents, buildPath }
+    allSourcePathsAndContents.push(sourcePathAndContent)
   }
+
+  for (const sourcePathAndContent of allSourcePathsAndContents) {
+    if (sourcePathAndContent.buildPath === null) continue;
+    const buildContents = await forEachFile(sourcePathAndContent.sourcePath, sourcePathAndContent.sourceContents, allSourcePathsAndContents);
+
+    await fs.mkdir(path.dirname(sourcePathAndContent.buildPath), { recursive: true });
+    await fs.writeFile(sourcePathAndContent.buildPath, buildContents, { encoding: "utf8" });
+  }
+
 };
 
 module.exports = recursivelyCopyAllContent;

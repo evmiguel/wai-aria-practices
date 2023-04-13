@@ -6,7 +6,7 @@ const rewriteElementPaths = require("./rewriteElementPaths");
 const removeDuplicateMainTag = require("./removeDuplicateMainTag");
 const removeConflictingCss = require("./removeConflictingCss");
 
-const transformPattern = async (sourcePath, sourceContents, paths) => {
+const transformPattern = async (sourcePath, sourceContents, allSourcePathsAndContents) => {
   const { sitePath, githubPath } = rewriteSourcePath(sourcePath);
   const html = parseHtml(sourceContents);
 
@@ -49,8 +49,12 @@ const transformPattern = async (sourcePath, sourceContents, paths) => {
     enableSidebar: true,
     head: html.querySelector("head").innerHTML,
     footer: "",
-    paths
-  });
+    paths: allSourcePathsAndContents.filter(entry => entry.sourcePath.includes('pattern.html')).map(entry => {
+      const html = parseHtml(entry.sourceContents);
+      const title = html.querySelector("h1").innerHTML;
+      return title
+  }).sort()
+})
 };
 
 module.exports = transformPattern;

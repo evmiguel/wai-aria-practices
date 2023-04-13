@@ -80,7 +80,7 @@ ${
 ${content}
 </div>
 <script id="rawData">
-    const rawData = JSON.parse(${JSON.stringify({paths})})
+    const rawData = ${JSON.stringify({paths})};
 </script>
 <script 
   src="{{ '/content-assets/wai-aria-practices/shared/js/skipto.js' | relative_url }}"

@@ -6,7 +6,7 @@ const rewriteElementPaths = require("./rewriteElementPaths");
 const { rewriteSourcePath } = require("./rewritePath");
 const wrapTablesWithResponsiveDiv = require("./wrapTablesWithResponsiveDiv");
 
-const transformPractice = async (sourcePath, sourceContents, paths) => {
+const transformPractice = async (sourcePath, sourceContents, allSourcePathsAndContents) => {
   const { sitePath, githubPath } = rewriteSourcePath(sourcePath);
   const html = parseHtml(sourceContents);
 
@@ -26,7 +26,11 @@ const transformPractice = async (sourcePath, sourceContents, paths) => {
     ),
     enableSidebar: true,
     head: html.querySelector("head").innerHTML,
-    paths
+    paths: allSourcePathsAndContents.filter(entry => entry.sourcePath.includes('practice.html')).map(entry => {
+      const html = parseHtml(entry.sourceContents);
+      const title = html.querySelector("h1").innerHTML;
+      return title
+  }).sort()
   });
 };
 

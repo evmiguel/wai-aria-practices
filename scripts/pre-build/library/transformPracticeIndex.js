@@ -3,10 +3,12 @@ const { parse: parseHtml } = require("node-html-parser");
 const formatForJekyll = require("./formatForJekyll");
 const { rewriteSourcePath } = require("./rewritePath");
 
-const transformPracticeIndex = async (sourcePath, paths /* , sourceContents */) => {
+const transformPracticeIndex = async (sourcePath, allSourcePathsAndContents /* , sourceContents */) => {
   const { sitePath, githubPath } = rewriteSourcePath(sourcePath);
 
   const practices = [];
+
+  const paths = allSourcePathsAndContents.map(entry => entry.sourcePath).filter(entry => entry.includes('practice.html'));
 
   for (const practicePath of paths) {
     const { sitePath } = rewriteSourcePath(practicePath);
@@ -89,7 +91,8 @@ const transformPracticeIndex = async (sourcePath, paths /* , sourceContents */) 
     githubPath,
     content,
     enableSidebar: false,
-    enableSidenav: false
+    enableSidenav: false,
+    paths
   });
 };
 
