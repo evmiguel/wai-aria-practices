@@ -5,6 +5,14 @@ body:not(.has-sidebar) .leftcol .standalone-resource__main {
   grid-column: 2/10;
 }
 
+body:not(.has-sidenav) .patternsPracticesNav  { 
+  display: none;
+}
+
+body:not(.has-sidenav) #main  { 
+  margin-left: 0;
+}
+
 
 a.skip-main {
   left:-999px;

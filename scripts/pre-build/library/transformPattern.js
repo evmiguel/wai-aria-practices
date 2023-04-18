@@ -47,6 +47,7 @@ const transformPattern = async (sourcePath, sourceContents, allSourcePathsAndCon
     githubPath,
     content: removeDuplicateMainTag(html.querySelector("body").innerHTML),
     enableSidebar: true,
+    enableSidenav: true,
     head: html.querySelector("head").innerHTML,
     footer: "",
     paths: allSourcePathsAndContents.filter(entry => entry.sourcePath.includes('pattern.html')).map(entry => {

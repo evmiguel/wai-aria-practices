@@ -25,6 +25,7 @@ const transformPractice = async (sourcePath, sourceContents, allSourcePathsAndCo
       removeDuplicateMainTag(html.querySelector("body").innerHTML)
     ),
     enableSidebar: true,
+    enableSidenav: true,
     head: html.querySelector("head").innerHTML,
     paths: allSourcePathsAndContents.filter(entry => entry.sourcePath.includes('practice.html')).map(entry => {
       const html = parseHtml(entry.sourceContents);

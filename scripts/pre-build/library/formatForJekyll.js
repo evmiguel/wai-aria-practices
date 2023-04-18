@@ -53,14 +53,16 @@ ${/* ${prettier.format(` */ ""}
   href="{{ '/content-assets/wai-aria-practices/shared/css/github.css' | relative_url }}"
 >
 ${
-  !(addBodyClass || enableSidebar)
+  !(addBodyClass || enableSidebar || enableSidenav)
     ? ""
     : `
 <script>
 const addBodyClass = ${JSON.stringify(addBodyClass)};
 const enableSidebar = ${JSON.stringify(enableSidebar)};
+const enableSidenav = ${JSON.stringify(enableSidenav)};
 if (addBodyClass) document.body.classList.add(addBodyClass);
 if (enableSidebar) document.body.classList.add('has-sidebar');
+if (enableSidenav) document.body.classList.add('has-sidenav');
 </script>
     `
 }
