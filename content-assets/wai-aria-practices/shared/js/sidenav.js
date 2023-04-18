@@ -5,7 +5,7 @@
 
 (function () {
     const sidenavPaths = rawData['paths'];
-    const main = document.getElementById('main');
+    const tableOfContentsNav = document.querySelector('.box.nav-hack.sidebar.standalone-resource__sidebar');
     const sideNav = document.createElement('nav');
     sideNav.setAttribute('id','sidenav');
     sideNav.classList.add("patternsPracticesNav");
@@ -22,6 +22,6 @@
         list.appendChild(item)
     }
     sideNav.appendChild(list);
-    main.parentElement.appendChild(sideNav);
-    main.parentElement.insertBefore(sideNav, main)
+    //tableOfContentsNav.parentElement.appendChild(sideNav);
+    tableOfContentsNav.parentElement.insertBefore(sideNav, tableOfContentsNav)
 })();
