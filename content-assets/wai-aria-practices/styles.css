@@ -804,6 +804,13 @@ body.page-about main {
   width: 50%;
 }
 
+#sidenav {
+  background: white;
+  padding: 2em 2em 0.2em 2em;
+  left: -2em;
+  top: -2em;
+}
+
 .patternsPracticesNav {
   text-align:left;
 }
@@ -816,6 +823,28 @@ body.page-about main {
 
 .patternsPracticesNav ul li {
   list-style: none;
+  padding-bottom: 0.5em;
+}
+
+li:has([aria-current='page']) {
+  border-bottom: solid 0.2em #ead322;
+}
+
+.currentPatternPractice {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a.currentPatternPractice:visited {
+  color: var(--wai-green);
+}
+
+.noDecoration {
+  text-decoration: none;
+}
+
+a.noDecoration:visited {
+  color: var(--wai-green);
 }
 
 @media screen and (min-width: 23em) {

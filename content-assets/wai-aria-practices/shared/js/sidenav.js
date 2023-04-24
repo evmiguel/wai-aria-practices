@@ -24,7 +24,12 @@
     for (path of sidenavPaths) {
         const item = document.createElement('li');
         const link = document.createElement('a');
-        if (path.title === pageTitle) link.ariaCurrent = "page";
+        link.classList.add('noDecoration');
+        if (path.title === pageTitle) {
+            link.ariaCurrent = "page"
+            link.classList.remove('noDecoration');
+            link.classList.add("currentPatternPractice");
+        };
         link.href = `../../${path.sitePath}`;
         link.textContent = path.title;
         item.appendChild(link);
