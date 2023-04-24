@@ -863,4 +863,42 @@ body.page-about main {
     float: left;
     width: 15em;
   }
+
+  .patternsPracticesNav h2 {
+    margin-top: 0;
+    margin-bottom: .5em;
+  }
+
+  .patternsPracticesNav ul {
+    margin-top: 0;
+  }
+
+  .patternPracticesDetails {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .patternsPracticesNav {
+    display: none;
+  }
+
+  div.default-grid.nav-container {
+    margin-bottom: 1em;
+  }
+
+  .patternPracticesDetails {
+    margin: 0;
+    padding: 0;
+  }
+
+  .patternPracticesDetails h2 {
+    border: none;
+    margin: 0;
+  }
+
+  .patternPracticesDetails ul {
+    list-style: none;
+  }
+
 }

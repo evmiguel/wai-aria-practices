@@ -11,17 +11,29 @@
     sideNav.classList.add("patternsPracticesNav");
     const heading = document.createElement('h2');
     heading.textContent = sideNavTitle;
+    heading.ariaLabel = `${sideNavTitle} Navigation`
     sideNav.appendChild(heading);
+
+    const detailsDisclosure = document.createElement('details');
+    const detailsDisclosureSummary = document.createElement('summary');
+    detailsDisclosureSummary.appendChild(heading.cloneNode(true));
+    detailsDisclosure.appendChild(detailsDisclosureSummary);
+
+
     const list = document.createElement('ul');
     for (path of sidenavPaths) {
         const item = document.createElement('li');
         const link = document.createElement('a');
+        if (path.title === pageTitle) link.ariaCurrent = "page";
         link.href = `../../${path.sitePath}`;
         link.textContent = path.title;
         item.appendChild(link);
         list.appendChild(item)
     }
+
     sideNav.appendChild(list);
-    //tableOfContentsNav.parentElement.appendChild(sideNav);
-    tableOfContentsNav.parentElement.insertBefore(sideNav, tableOfContentsNav)
+    detailsDisclosure.appendChild(list.cloneNode(true));
+    detailsDisclosure.classList.add('patternPracticesDetails');
+    tableOfContentsNav.parentElement.insertBefore(sideNav, tableOfContentsNav);
+    sideNav.parentElement.insertBefore(detailsDisclosure, sideNav);
 })();

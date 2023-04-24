@@ -85,6 +85,7 @@ ${content}
 <script id="rawData">
     const rawData = ${JSON.stringify({paths})};
     const sideNavTitle = "${navTitle}";
+    const pageTitle = "${title}";
 </script>
 <script 
   src="{{ '/content-assets/wai-aria-practices/shared/js/skipto.js' | relative_url }}"
